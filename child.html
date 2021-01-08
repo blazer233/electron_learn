@@ -9,6 +9,13 @@
 
 <body>
     新的窗口
+    <button id='popBtn'>向父窗口传达</button>
+    <script>
+        var popBtn = this.document.querySelector('#popBtn')
+        popBtn.onclick = function (e) {
+            window.opener.postMessage('我是子窗口的消息')
+        }
+    </script>
 </body>
 
 </html>

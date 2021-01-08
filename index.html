@@ -3,16 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, idivnitial-scale=1.0">
-    <title>Document</title>
+    <title>electron</title>
 </head>
 
 <body>
     <Button id="btn">读取简介文件</Button><br />
     <Button id="btns">打开新的窗口</Button><br />
+    <button id="openBtn">打开图片</button><br />
+    <button id="saveBtn">存储文件</button><br />
+    <button id="messageBtn">弹出对话框</button><br />
+    <button id="notifyBtn">通知消息</button><br />
+    <span>激活码：</span>
+    <span id="code">jspangcom1234234242</span> <button id="btncopy">复制激活码</button><br />
+    <a href="https://www.bookstack.cn/read/electronjs-9.0/README.md">electron文档(当前页面打开)</a><br />
+    <a href="https://www.bookstack.cn/read/electronjs-9.0/README.md" id='aHref'>electron文档(打开浏览器打开)</a><br />
+    <Button id="aHrefopen">打开新的窗口(window open 打开)</Button><br />
     <div id="mybaby"></div>
+    <img id="images" style="width:100%" />
     <script src="./index.js"></script>
-    <script src="./remote.js"></script>
 </body>
 
 </html>

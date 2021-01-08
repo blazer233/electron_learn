@@ -1,15 +1,28 @@
+const { otherConfig } = require("./BrowserConfig");
 const {
   Menu: { buildFromTemplate, setApplicationMenu },
+  BrowserWindow,
 } = require("electron");
 
 var template = [
   {
-    label: "凤来怡洗浴会所",
-    submenu: [{ label: "精品SPA" }, { label: "泰式按摩" }],
+    label: "流量",
+    submenu: [
+      {
+        label: "充值10G",
+        accelerator: `ctrl+n`, //快捷键
+        click: () => {
+          win = new BrowserWindow(otherConfig);
+          win.loadFile("about.html");
+          win.on("closed", () => (win = null));
+        },
+      },
+      { label: "充值50G" },
+    ],
   },
   {
-    label: "大浪淘沙洗浴中心",
-    submenu: [{ label: "牛奶玫瑰浴" }, { label: "爱情拍拍手" }],
+    label: "话费",
+    submenu: [{ label: "充值100" }, { label: "充值200" }],
   },
 ];
 setApplicationMenu(buildFromTemplate(template));
