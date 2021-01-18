@@ -10,8 +10,16 @@ const {
     Menu: { buildFromTemplate },
     clipboard: { writeText },
   },
+  ipcRenderer,
 } = require("electron");
 
+btnMax.addEventListener("click", () => {
+  ipcRenderer.send("change-frame", true);
+});
+
+btnMin.addEventListener("click", () => {
+  ipcRenderer.send("change-frame", false);
+});
 openBtn.onclick = async function () {
   let res = await showOpenDialog({
     title: "选择照片",

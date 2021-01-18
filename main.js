@@ -1,5 +1,6 @@
 var {
   app,
+  ipcMain,
   BrowserWindow,
   BrowserView,
   globalShortcut,
@@ -22,6 +23,23 @@ app.on("ready", () => {
       });
     });
   mainWindow.loadFile("index.html"); // 加载html页面
+  /**
+   * 其他进程：ipcRenderer
+   * 主进程：ipcMain
+   * .on('监听事件名',(event,拿到的参数)=>{})
+   * .send('监听事件名','传递的参数')
+   *
+   * .sendSync('sync', '同步')
+   * .on('监听事件名',(event,拿到的参数)=>{ event.returnValue=''})
+   *      主进程直接将信息以【同步】的形式传递给渲染进程
+   */
+  ipcMain.on("change-frame", (event, arg) => {
+    if (arg === true) {
+      mainWindow.maximize();
+    } else {
+      mainWindow.minimize();
+    }
+  });
 
   /**
  * 程序内部打开网页
@@ -31,9 +49,11 @@ app.on("ready", () => {
   view.webContents.loadURL(url); //wiew载入的页面
 
  */
-  mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools({ mode: "bottom" });
+
   mainWindow.on("closed", () => {
     mainWindow = null;
+    app.quit();
   });
 });
 app.on("will-quit", function () {

@@ -8,13 +8,26 @@
 </head>
 
 <body>
-    新的窗口
-    <button id='popBtn'>向父窗口传达</button>
+    <h3>测试最大化，最小化</h3>
+    <div>
+        <button id="btnMax">
+            最大化
+        </button>
+        <button id="btnMin">最小化</button>
+    </div>
     <script>
-        var popBtn = this.document.querySelector('#popBtn')
-        popBtn.onclick = function (e) {
-            window.opener.postMessage('我是子窗口的消息')
-        }
+        const fs = require("fs");
+        const {
+            ipcRenderer
+        } = require("electron");
+
+        btnMax.addEventListener("click", () => {
+            ipcRenderer.send("change-frame", true);
+        });
+
+        btnMin.addEventListener("click", () => {
+            ipcRenderer.send("change-frame", false);
+        });
     </script>
 </body>
 
